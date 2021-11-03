@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.yqh.base.SuperFragment
 
-class BaseFragment<T : ViewBinding>(var inflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> T) :
+open abstract class BaseFragment<T : ViewBinding>(var inflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> T) :
     SuperFragment() {
     protected lateinit var viewBinding: T
 
@@ -20,4 +20,14 @@ class BaseFragment<T : ViewBinding>(var inflater: (inflater: LayoutInflater, con
         return viewBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initListener()
+        initData()
+    }
+
+    abstract fun initListener()
+
+    abstract fun initData()
 }

@@ -14,7 +14,20 @@ open abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: Layou
         super.onCreate(savedInstanceState)
         viewBinding = inflater(layoutInflater)
         setContentView(viewBinding.root)
+
+        initListener()
+        initData()
     }
+
+    /**
+     * 初始化监听
+     */
+    abstract fun initListener()
+
+    /**
+     * 初始化数据
+     */
+    abstract fun initData()
 
     /**
      * 基于横向的设计图尺寸来进行适配

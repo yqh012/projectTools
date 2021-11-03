@@ -8,9 +8,11 @@ import com.yqh.tv.screen.tools.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initListener() {
 
+    }
+
+    override fun initData() {
         when (resources.configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> {
                 viewBinding.titleName.text = "横屏"
@@ -21,7 +23,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
     }
 
-    fun toast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
-    }
+
 }
