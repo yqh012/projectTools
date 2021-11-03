@@ -9,8 +9,6 @@ android {
     defaultConfig {
         minSdk Version.minSdk
         targetSdk Version.targetSdk
-        versionCode Version.versionCode
-        versionName Version.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -36,8 +34,13 @@ dependencies {
     implementation(Android.core_ktx)
     implementation(Android.appcompat)
     implementation(Android.material)
-    implementation(ThirdParty.leanback)
+
+    api(ThirdParty.leanback)
+    //工具库 轮子
     api(ThirdParty.utilCodex)
+    //协程
+    api(Android.coroutinesCore)
+    api(Android.coroutinesCore)
 
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.ext)
