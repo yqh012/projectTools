@@ -8,6 +8,9 @@ object Android {
 
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:2.0.4"
 
+
+
+
     //协程版本
     private const val coroutines_version = "1.4.3"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"

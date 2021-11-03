@@ -14,12 +14,8 @@ import com.blankj.utilcode.util.AdaptScreenUtils
  */
 open abstract class SuperActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun getResources(): Resources {
-        return AdaptScreenUtils.adaptWidth(resources, screenWidth())
+        return AdaptScreenUtils.adaptWidth(super.getResources(), screenWidth())
     }
 
     open fun screenWidth(): Int = 1920
