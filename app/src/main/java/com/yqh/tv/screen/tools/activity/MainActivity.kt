@@ -1,4 +1,4 @@
-package com.yqh.tv.screen.tools
+package com.yqh.tv.screen.tools.activity
 
 import android.content.res.Configuration
 import android.os.Bundle

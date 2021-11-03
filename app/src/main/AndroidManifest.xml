@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yqh.tv.screen.tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,24 +11,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TvScreenTools">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".TestActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.yqh.aaa"/>
-                <action android:name="com.yqh.bbb"/>
-                <action android:name="com.yqh.ccc"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+
+<!--        <activity-->
+<!--            android:name=".activity.TestActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.yqh.aaa" />-->
+<!--                <action android:name="com.yqh.bbb" />-->
+<!--                <action android:name="com.yqh.ccc" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>

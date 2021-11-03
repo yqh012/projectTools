@@ -46,6 +46,14 @@ dependencies {
     api(Android.coroutinesCore)
     api(Android.coroutinesCore)
 
+    api(Android.lifecycle.liveDataKtx)
+    api(Android.lifecycle.viewModelKtx)
+    api(Android.lifecycle.lifecycleRuntime)
+    api(Android.lifecycle.viewModelSavestate)
+    api(Android.lifecycle.process)
+    api(Android.activity.activityKtx)
+    api(Android.fragment.fragmentKtx)
+
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.ext)
     androidTestImplementation(Junit.espresso)

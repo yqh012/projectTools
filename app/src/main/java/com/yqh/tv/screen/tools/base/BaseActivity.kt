@@ -15,9 +15,15 @@ open abstract class BaseActivity<T : ViewBinding>(val inflater: (inflater: Layou
         viewBinding = inflater(layoutInflater)
         setContentView(viewBinding.root)
 
+        initialize()
         initListener()
         initData()
     }
+
+    /**
+     * 构建初始化，如果需要
+     */
+    open fun initialize(){}
 
     /**
      * 初始化监听
