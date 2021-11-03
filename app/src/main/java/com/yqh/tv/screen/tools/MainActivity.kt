@@ -13,10 +13,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         when (resources.configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> {
-                toast("横屏")
+                viewBinding.titleName.text = "横屏"
             }
             Configuration.ORIENTATION_PORTRAIT -> {
-                toast("竖屏")
+                viewBinding.titleName.text = "竖屏"
             }
         }
     }
