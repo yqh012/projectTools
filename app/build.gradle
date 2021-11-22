@@ -31,7 +31,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     buildFeatures {
@@ -47,6 +47,8 @@ dependencies {
     implementation(Android.constraint_layout)
     implementation(ThirdParty.multidex)
     implementation project(path: ':base')
+    //独立导入实体对比编译插件
+    kapt project(":libcompiler")
 
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.ext)

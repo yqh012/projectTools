@@ -9,3 +9,5 @@ dependencyResolutionManagement {
 rootProject.name = "TvScreenTools"
 include ':app'
 include ':base'
+include ':libannotation'
+include ':libcompiler'

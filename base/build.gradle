@@ -55,6 +55,8 @@ dependencies {
     api(Android.activity.activityKtx)
     api(Android.fragment.fragmentKtx)
 
+    api project(path: ':libannotation')
+
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.ext)
     androidTestImplementation(Junit.espresso)

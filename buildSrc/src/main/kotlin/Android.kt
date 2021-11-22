@@ -1,6 +1,6 @@
 object Android {
 
-    const val kotlin_version = "1.5.30"
+    const val kotlin_version = "1.6.0"
 
     const val core_ktx = "androidx.core:core-ktx:1.3.2"
 
