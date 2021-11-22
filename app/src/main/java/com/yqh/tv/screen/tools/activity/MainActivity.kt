@@ -14,6 +14,7 @@ import com.yqh.tv.screen.tools.databinding.ActivityMainBinding
 import com.yqh.tv.screen.tools.databinding.LayoutStudentsItemBinding
 import com.yqh.tv.screen.tools.databinding.LayoutUserItemBinding
 import com.yqh.tv.screen.tools.domain.UserInfo
+import com.yqh.tv.screen.tools.domain.contrast
 import pt2px
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -82,10 +83,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 if (item.age % 2 == 0) 1 else 2
             },
             compareItem = { old: UserInfo, new: UserInfo ->
-                old.id == new.id
+                old.contrast(new)
             },
             contentsSame = { old: UserInfo, new: UserInfo ->
-                old.id == new.id
+                old.contrast(new)
             }
         )
 
