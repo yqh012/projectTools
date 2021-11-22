@@ -13,6 +13,7 @@ android {
         targetSdk Version.targetSdk
         versionCode Version.versionCode
         versionName Version.versionName
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,9 +45,12 @@ dependencies {
     implementation(Android.appcompat)
     implementation(Android.material)
     implementation(Android.constraint_layout)
+    implementation(ThirdParty.multidex)
     implementation project(path: ':base')
 
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.ext)
     androidTestImplementation(Junit.espresso)
+
+
 }

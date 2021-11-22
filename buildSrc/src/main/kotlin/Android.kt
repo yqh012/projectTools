@@ -1,5 +1,7 @@
 object Android {
 
+    const val kotlin_version = "1.5.30"
+
     const val core_ktx = "androidx.core:core-ktx:1.3.2"
 
     const val appcompat = "androidx.appcompat:appcompat:1.2.0"
@@ -8,6 +10,8 @@ object Android {
 
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:2.0.4"
 
+    //标准库
+    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     val lifecycle = Lifecycle
     object Lifecycle {
