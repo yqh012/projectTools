@@ -44,7 +44,8 @@ dependencies {
     api(ThirdParty.utilCodex)
     //协程
     api(Android.coroutinesCore)
-    api(Android.coroutinesCore)
+    api(Android.coroutinesAndroid)
+    api(Android.coroutinesJdk)
 
     api(Android.lifecycle.liveDataKtx)
     api(Android.lifecycle.viewModelKtx)
