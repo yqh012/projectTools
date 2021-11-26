@@ -1,6 +1,6 @@
 object ThirdParty {
 
-    const val multidex = "com.android.support:multidex:1.0.3"
+    const val multidex = "com.android.support:multidex:2.0.1"
 
     const val utilCodex = "com.blankj:utilcodex:1.30.6"
 
@@ -12,6 +12,12 @@ object ThirdParty {
         private const val apt_utils_version = "1.7.1"
         const val kotlin_poet = "com.squareup:kotlinpoet:$kotlin_poet_version"
         const val apt_utils = "com.bennyhuo.aptutils:aptutils:$apt_utils_version"
+    }
+
+    val mmkv = Mmkv
+    object Mmkv {
+        private const val version = "1.2.11"
+        const val mmkv = "com.tencent:mmkv:$version"
     }
 
 }

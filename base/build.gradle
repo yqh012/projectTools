@@ -54,6 +54,7 @@ dependencies {
     api(Android.lifecycle.process)
     api(Android.activity.activityKtx)
     api(Android.fragment.fragmentKtx)
+    api(ThirdParty.mmkv.mmkv)
 
     api project(path: ':libannotation')
 

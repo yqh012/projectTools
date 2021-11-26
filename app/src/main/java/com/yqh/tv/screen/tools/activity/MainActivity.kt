@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import com.yqh.base.ext.getParcelable
+import com.yqh.base.ext.removeValues
+import com.yqh.base.ext.save
 import com.yqh.base.recycler.adapter.TypeAdapter
 import com.yqh.base.recycler.holder.BaseViewHolder
 import com.yqh.tv.screen.tools.BR
@@ -30,6 +33,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     }
                 }
             }
+
+
         }
 
         override fun itemBind(item: UserInfo) {

@@ -6,17 +6,27 @@ import android.database.Cursor
 import android.net.Uri
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
+import com.tencent.mmkv.MMKV
 import com.yqh.base.util.AppUtil
 
 class InitProvider : ContentProvider() {
     override fun onCreate(): Boolean {
+        initAppUtil()
+        initMmkv()
+        return true
+    }
+
+    private fun initMmkv() {
+        MMKV.initialize(this.context)
+    }
+
+    private fun initAppUtil(){
         AppUtil.application?.apply {
             Utils.init(this)
             LogUtils.getConfig().apply {
                 globalTag = "yqh-app" //日志 tag 前缀
             }
         }
-        return true
     }
 
     override fun query(
