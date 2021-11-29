@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.AdaptScreenUtils
  * 默认基于宽度适配
  * 默认适配宽度为 1920
  */
-open abstract class SuperActivity : AppCompatActivity() {
+abstract class SuperActivity : AppCompatActivity() {
 
     override fun getResources(): Resources {
         return AdaptScreenUtils.adaptWidth(super.getResources(), screenWidth())

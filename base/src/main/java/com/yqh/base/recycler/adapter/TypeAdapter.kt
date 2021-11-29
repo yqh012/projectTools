@@ -7,7 +7,7 @@ import com.yqh.base.recycler.holder.BaseViewHolder
 
 class TypeAdapter<T>(
     private val createHolder: (ViewGroup, Int) -> BaseViewHolder<*, T>,
-    private val itemViewType: (Int, T) -> Int,
+    private val itemViewType: (Int, T) -> Int = { _, _ -> -1 },
     compareItem: (T, T) -> Boolean,
     contentsSame: (T, T) -> Boolean
 ) :

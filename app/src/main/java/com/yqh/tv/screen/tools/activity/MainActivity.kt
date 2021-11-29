@@ -1,12 +1,8 @@
 package com.yqh.tv.screen.tools.activity
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
-import com.yqh.base.ext.getParcelable
-import com.yqh.base.ext.removeValues
+import com.yqh.base.ext.inflate
 import com.yqh.base.ext.save
 import com.yqh.base.recycler.adapter.TypeAdapter
 import com.yqh.base.recycler.holder.BaseViewHolder
@@ -33,8 +29,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     }
                 }
             }
-
-
         }
 
         override fun itemBind(item: UserInfo) {
@@ -61,27 +55,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             viewBinding.setVariable(BR.user, item)
             viewBinding.executePendingBindings()
         }
-
     }
 
     private val userAdapter by lazy {
         TypeAdapter(
             createHolder = { parent: ViewGroup, viewType: Int ->
                 when (viewType) {
-                    1 -> SimpleViewHolder(
-                        DataBindingUtil.inflate(
-                            LayoutInflater.from(parent.context),
-                            R.layout.layout_user_item, parent, false
-                        )
-                    )
-                    else -> StudentsViewHolder(
-                        DataBindingUtil.inflate(
-                            LayoutInflater.from(parent.context),
-                            R.layout.layout_students_item,
-                            parent,
-                            false
-                        )
-                    )
+                    1 -> SimpleViewHolder(parent.inflate(R.layout.layout_user_item))
+                    else -> StudentsViewHolder(parent.inflate(R.layout.layout_students_item))
                 }
             },
             itemViewType = { position: Int, item: UserInfo ->
@@ -94,7 +75,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 old.contrast(new)
             }
         )
-
     }
 
     override fun initialize() {
