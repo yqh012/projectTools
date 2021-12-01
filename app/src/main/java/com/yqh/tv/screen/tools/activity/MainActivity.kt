@@ -2,8 +2,8 @@ package com.yqh.tv.screen.tools.activity
 
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.yqh.base.ext.inflate
-import com.yqh.base.ext.save
 import com.yqh.base.recycler.adapter.TypeAdapter
 import com.yqh.base.recycler.holder.BaseViewHolder
 import com.yqh.tv.screen.tools.BR
@@ -14,9 +14,12 @@ import com.yqh.tv.screen.tools.databinding.LayoutStudentsItemBinding
 import com.yqh.tv.screen.tools.databinding.LayoutUserItemBinding
 import com.yqh.tv.screen.tools.domain.UserInfo
 import com.yqh.tv.screen.tools.domain.contrast
+import com.yqh.tv.screen.tools.viewmodel.MainViewModel
 import pt2px
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+
+    val model: MainViewModel by viewModels()
 
     class SimpleViewHolder(viewBinding: LayoutUserItemBinding) :
         BaseViewHolder<LayoutUserItemBinding, UserInfo>(viewBinding) {
@@ -83,6 +86,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             setItemSpacing(pt2px(5f))
             adapter = userAdapter
         }
+
+        model.userRepositorySee()
     }
 
     override fun initListener() {

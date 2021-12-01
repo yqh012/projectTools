@@ -7,12 +7,17 @@ import android.net.Uri
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.tencent.mmkv.MMKV
+import com.yqh.base.repository.AbsRepository
 import com.yqh.base.util.AppUtil
+import kotlin.reflect.KClass
+import kotlin.reflect.KClassifier
+import kotlin.reflect.jvm.internal.impl.load.kotlin.KotlinClassFinder
 
 class InitProvider : ContentProvider() {
     override fun onCreate(): Boolean {
         initAppUtil()
         initMmkv()
+        initRepository()
         return true
     }
 
@@ -20,13 +25,31 @@ class InitProvider : ContentProvider() {
         MMKV.initialize(this.context)
     }
 
-    private fun initAppUtil(){
-        AppUtil.application?.apply {
+    private fun initAppUtil() {
+        AppUtil.application.apply {
             Utils.init(this)
             LogUtils.getConfig().apply {
                 globalTag = "yqh-app" //日志 tag 前缀
             }
         }
+    }
+
+    private fun initRepository() {
+        AppUtil
+            .application
+            .resources
+            .assets
+            .open("repository.txt")
+            .bufferedReader()
+            .readLines()
+            .toList().forEach {
+                LogUtils.i("repository init classPath : $it")
+                if (Class.forName(it)
+                        .newInstance().javaClass.kotlin.supertypes.joinToString { type ->
+                            type.toString()
+                        }.contains(AbsRepository::class.qualifiedName.toString())
+                ) else throw IllegalStateException("@Repository 注解的不是 AbsRepository 的子类，class : $it")
+            }
     }
 
     override fun query(

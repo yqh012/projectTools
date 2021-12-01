@@ -55,6 +55,7 @@ dependencies {
     api(Android.activity.activityKtx)
     api(Android.fragment.fragmentKtx)
     api(ThirdParty.mmkv.mmkv)
+    api(Android.kotlinReflect)
 
     api project(path: ':libannotation')
 

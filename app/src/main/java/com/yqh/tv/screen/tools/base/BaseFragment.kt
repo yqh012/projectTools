@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.yqh.base.SuperFragment
 
-open abstract class BaseFragment<T : ViewBinding>(var inflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> T) :
+abstract class BaseFragment<T : ViewBinding>(var inflater: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> T) :
     SuperFragment() {
 
     private var _binding: T? = null

@@ -9,20 +9,29 @@ import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.yqh.tv.screen.libannotation.FieldIngore
 import com.yqh.tv.screen.libannotation.Model
+import com.yqh.tv.screen.libannotation.Repository
+import java.io.File
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
+import javax.lang.model.element.Element
 import javax.lang.model.element.ExecutableElement
 import javax.lang.model.element.TypeElement
+import javax.tools.StandardLocation
 
 @SupportedAnnotationTypes(
     "com.yqh.tv.screen.libannotation.Model",
-    "com.yqh.tv.screen.libannotation.FieldIngore"
+    "com.yqh.tv.screen.libannotation.FieldIngore",
+    "com.yqh.tv.screen.libannotation.Repository"
 )
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 class ModelProcessor : AbstractProcessor() {
+    private val outputFileName = "repository.txt"
+    private lateinit var filer: Filer
     override fun init(processingEnv: ProcessingEnvironment) {
         super.init(processingEnv)
         AptContext.init(processingEnv)
+
+        filer = processingEnv.filer
     }
 
     override fun process(
@@ -103,12 +112,24 @@ class ModelProcessor : AbstractProcessor() {
                                     .addStatement(
                                         "return ${
                                             it.parameters.filter {
-                                                println("***  ${it.simpleName} : ${it.getAnnotation(FieldIngore::class.java)}  ***")
+                                                println(
+                                                    "***  ${it.simpleName} : ${
+                                                        it.getAnnotation(
+                                                            FieldIngore::class.java
+                                                        )
+                                                    }  ***"
+                                                )
                                                 it.getAnnotation(FieldIngore::class.java) == null
                                             }
-                                                .toList().takeIf { it.isNotEmpty() }?.joinToString(separator = "") {
+                                                .toList().takeIf { it.isNotEmpty() }
+                                                ?.joinToString(separator = "") {
                                                     """this.${it.simpleName} == info.${it.simpleName} && """
-                                                }?.let { it.substring(0, it.lastIndexOf("&&")) } ?: "true"
+                                                }?.let {
+                                                    it.substring(
+                                                        0,
+                                                        it.lastIndexOf("&&")
+                                                    )
+                                                } ?: "true"
                                         }"
                                     )
                                     .build()
@@ -117,7 +138,42 @@ class ModelProcessor : AbstractProcessor() {
                     }
             }
 
+
+
+
+        searchRepositoryConfigStr(roundEnv.getElementsAnnotatedWith(Repository::class.java))?.let { it ->
+            if (it.isNotBlank()) {
+                val resource = filer.getResource(StandardLocation.CLASS_OUTPUT, "", outputFileName)
+                println(resource.toUri().path.toString())
+
+                val assetPath = resource?.let { path ->
+                    path.toUri().path.let {
+                        it.substring(0, it.indexOf("app") + 4)
+                    } + "src/main/assets/"
+                }
+
+                val file = File(assetPath).apply {
+                    if (!exists()) mkdirs()
+                }
+
+                File(file, outputFileName).apply {
+                    if (exists()) delete()
+                    createNewFile()
+                    println("content : $it")
+                    writeText(it)
+                }
+            }
+        }
+
         println("********************* model end *********************")
         return true
+    }
+
+    private fun searchRepositoryConfigStr(elements: MutableSet<out Element>?): String? {
+        return elements?.let {
+            it.joinToString("\n") { element ->
+                (element as? TypeElement)?.qualifiedName.toString()
+            }
+        }
     }
 }

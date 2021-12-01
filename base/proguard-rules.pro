@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# kotlin反射混淆的时候回去掉 signature
+-keepattributes Signature

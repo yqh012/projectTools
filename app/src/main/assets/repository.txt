@@ -1,0 +1,2 @@
+com.yqh.tv.screen.tools.repository.StudentRepository
+com.yqh.tv.screen.tools.repository.UserRepository

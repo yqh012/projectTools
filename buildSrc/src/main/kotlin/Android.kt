@@ -12,6 +12,8 @@ object Android {
 
     //标准库
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //反射库
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     val lifecycle = Lifecycle
     object Lifecycle {
