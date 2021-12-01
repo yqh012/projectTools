@@ -89,7 +89,7 @@ class ModelProcessor : AbstractProcessor() {
                                     .addStatement(
                                         "return ${typeElement.simpleName()}(${
                                             it.parameters.joinToString {
-                                                """this["${it.simpleName()}"] as %T """
+                                                """this["${it.simpleName()}"] as %T"""
                                             }
                                         })",
                                         *it.parameters.map { it.asType().asKotlinTypeName() }
