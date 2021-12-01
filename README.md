@@ -126,3 +126,84 @@ private val userAdapter by lazy {
 
 ### View.clickAnim 
 ###### 提供view点击按下缩小，松开放大动画以及连续点击过滤(300ms过滤时长)
+
+---
+### StorageExt.kt
+    mmkv 实现的相关存储封装
+    
+
+---
+### DataBindingExt.kt
+    封装列表adapter适配器的ViewBinding扩展方式
+    
+```
+SimpleViewHolder(parent.inflate(R.layout.layout_user_item))
+```
+
+---
+
+### NullableDelegate
+    声明不可空对象，但是可以释放的代理实现
+
+```
+    /**
+     * 属性代理不可为空的可释放类型，简便主程序业务代码的实现
+     * @see(NullableDelegate)
+     */
+    protected var viewBinding: T by releasableNotNull()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewBinding = inflater(layoutInflater)
+        setContentView(viewBinding.root)
+        initialize()
+        initListener()
+        initData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // viewBinding 为不可空类型，在DonDestroy中通过 release 释放属性代理中get()中value的值
+        ::viewBinding.release()
+    }
+```
+
+---
+
+### Repository注解
+    创建并声明 Repository 实现类，模拟注入实现，后续使用直接在相关model中通过属性代理 by repositoryOf 
+    
+- 通过创建Repository时继承父类AbsRepository类，并在类中添加注解 @Repository
+- 项目重新编译
+- 会在项目中创建app/src/main/assets/repository.txt文件
+- 文件中内容为Repository实现类的全类名
+- 注意: 如果在非AbsRepository的子类中声明该注解，会发生异常崩溃提醒
+
+```
+/**
+ * 创建 Repository 业务实现类
+ */
+@Repository
+class UserRepository : AbsRepository(){
+    init {
+        println("UserRepository init ....")
+    }
+    fun seeHello() {
+        println("hello")
+    }
+}
+
+
+/**
+ * 使用
+ */
+class MainViewModel : ViewModel() {
+    // 通过属性代理获取当前Repository对象，模拟注入事件
+    private val userRepository: UserRepository by repositoryOf()
+
+    fun userRepositorySee() {
+        userRepository.seeHello()
+    }
+
+}
+```
