@@ -7,11 +7,11 @@
 
 ### 页面基类
 - **SuperActivity** 屏幕适配
-    + screenWidth() : Int
-        + 方法返回通过width宽度进行适配，从重写并返回对应设计中的宽度
-    + getResources(): Resources
-        + 获取设置了对应设计图宽度后的Resource资源。
-
+   + screenWidth() : Int
+      + 方法返回通过width宽度进行适配，从重写并返回对应设计中的宽度
+   + getResources(): Resources
+      + 获取设置了对应设计图宽度后的Resource资源。 
+      
 ```
 override fun getResources(): Resources {
         return AdaptScreenUtils.adaptWidth(super.getResources(), screenWidth())
@@ -24,28 +24,28 @@ override fun getResources(): Resources {
 
 ### 列表适配器
 - TypeAdapter 列表适配器
-    + createHolder holder创建(BaseViewHolder)
-    + itemViewType itemViewType类型返回
-    + compareItem Diff 校验对象比对
-    + contentsSame Diff 校验内容比对
+   + createHolder holder创建(BaseViewHolder)
+   + itemViewType itemViewType类型返回
+   + compareItem Diff 校验对象比对
+   + contentsSame Diff 校验内容比对
 
 ---
 
 - BaseViewHolder 基类ViewHolder
-    + itemBind 数据绑定
+   + itemBind 数据绑定
 
 ---
 - DiffCallback 数据比对
-    + compareItem 对象比对
-    + contentsSame 内容比对
+   + compareItem 对象比对
+   + contentsSame 内容比对
 
 ---
 - 注解辅助类
-    + ==@Model==
-        + 实体类.toMap() : 提供实体转Map
-        + Map.toInfo() : 提供Map转实体
-        + 实体类.contrast() : 提供实体类参数比对
-            + ==@FieldIngore== : 忽略某些提供的构造函数内的字段比对
+   + ==@Model==
+      + 实体类.toMap() : 提供实体转Map
+      + Map.toInfo() : 提供Map转实体
+      + 实体类.contrast() : 提供实体类参数比对
+         + ==@FieldIngore== : 忽略某些提供的构造函数内的字段比对
 
 
 ```
@@ -124,18 +124,18 @@ private val userAdapter by lazy {
 
 ---
 
-### View.clickAnim
+### View.clickAnim 
 ###### 提供view点击按下缩小，松开放大动画以及连续点击过滤(300ms过滤时长)
 
 ---
 ### StorageExt.kt
     mmkv 实现的相关存储封装
-
+    
 
 ---
 ### DataBindingExt.kt
     封装列表adapter适配器的ViewBinding扩展方式
-
+    
 ```
 SimpleViewHolder(parent.inflate(R.layout.layout_user_item))
 ```
@@ -172,7 +172,7 @@ SimpleViewHolder(parent.inflate(R.layout.layout_user_item))
 
 ### Repository注解
     创建并声明 Repository 实现类，模拟注入实现，后续使用直接在相关model中通过属性代理 by repositoryOf 
-
+    
 - 通过创建Repository时继承父类AbsRepository类，并在类中添加注解 @Repository
 - 项目重新编译
 - 会在项目中创建app/src/main/assets/repository.txt文件
