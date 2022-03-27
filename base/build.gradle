@@ -56,6 +56,8 @@ dependencies {
     api(Android.fragment.fragmentKtx)
     api(ThirdParty.mmkv.mmkv)
     api(Android.kotlinReflect)
+    api(ThirdParty.retrofit.retrofit)
+    api(ThirdParty.retrofit.retrofit_convert_gson)
 
     api project(path: ':libannotation')
 

@@ -1,5 +1,6 @@
 package com.yqh.tv.screen.tools.repository
 
+import com.blankj.utilcode.util.LogUtils
 import com.yqh.base.repository.AbsRepository
 import com.yqh.tv.screen.libannotation.Repository
 
@@ -9,7 +10,7 @@ import com.yqh.tv.screen.libannotation.Repository
 @Repository
 class UserRepository : AbsRepository(){
     init {
-        println("UserRepository init ....")
+        LogUtils.i("UserRepository init ....")
     }
     fun seeHello() {
         println("hello")
@@ -19,7 +20,7 @@ class UserRepository : AbsRepository(){
 @Repository
 class StudentRepository : AbsRepository() {
     init {
-        println("StudentRepository init ....")
+        LogUtils.i("StudentRepository init ....")
     }
     fun seePlay() {
         println("玩玩玩")

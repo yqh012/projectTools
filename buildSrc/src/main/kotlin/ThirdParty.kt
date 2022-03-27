@@ -7,6 +7,7 @@ object ThirdParty {
     const val leanback = "androidx.leanback:leanback:1.2.0-alpha01"
 
     val kotlinpoet = KotlinPoet
+
     object KotlinPoet {
         private const val kotlin_poet_version = "1.4.3"
         private const val apt_utils_version = "1.7.1"
@@ -15,9 +16,18 @@ object ThirdParty {
     }
 
     val mmkv = Mmkv
+
     object Mmkv {
         private const val version = "1.2.11"
         const val mmkv = "com.tencent:mmkv:$version"
+    }
+
+    val retrofit = Retrofit
+
+    object Retrofit {
+        private const val version = "2.9.0"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+        const val retrofit_convert_gson = "com.squareup.retrofit2:converter-gson:$version"
     }
 
 }

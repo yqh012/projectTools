@@ -39,16 +39,17 @@ class InitProvider : ContentProvider() {
             .application
             .resources
             .assets
-            .open("repository.txt")
-            .bufferedReader()
-            .readLines()
-            .toList().forEach {
-                LogUtils.i("repository init classPath : $it")
-                if (Class.forName(it)
-                        .newInstance().javaClass.kotlin.supertypes.joinToString { type ->
-                            type.toString()
-                        }.contains(AbsRepository::class.qualifiedName.toString())
-                ) else throw IllegalStateException("@Repository 注解的不是 AbsRepository 的子类，class : $it")
+            .open("repository.txt").use {
+                it.bufferedReader()
+                    .readLines()
+                    .toList().forEach {
+                        LogUtils.i("repository init classPath : $it")
+                        if (Class.forName(it)
+                                .newInstance().javaClass.kotlin.supertypes.joinToString { type ->
+                                    type.toString()
+                                }.contains(AbsRepository::class.qualifiedName.toString())
+                        ) else throw IllegalStateException("@Repository 注解的不是 AbsRepository 的子类，class : $it")
+                    }
             }
     }
 
