@@ -20,5 +20,27 @@
             android:gravity="center"
             android:text="弹出弹窗" />
 
+        <Button
+            android:id="@+id/click_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="异常测试"
+            app:layout_constraintTop_toBottomOf="@id/click_dialog"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <Button
+            android:id="@+id/click_download_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="下载文件"
+            app:layout_constraintTop_toBottomOf="@id/click_error"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
