@@ -1,10 +1,11 @@
 package com.yqh.base.repository
 
+import com.yqh.tools.network.base.BaseRepository
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-object Repositorys {
+object Repository {
     private val repositoryMap = ConcurrentHashMap<KClass<out AbsRepository>, AbsRepository>()
 
     fun <T : AbsRepository> KClass<T>.get(): T {
@@ -16,15 +17,15 @@ object Repositorys {
     }
 }
 
-abstract class AbsRepository {
+abstract class AbsRepository : BaseRepository() {
     init {
-        Repositorys.run { register() }
+        Repository.run { register() }
     }
 }
 
 class RepositoryDelegate<T : AbsRepository>(val kClass: KClass<T>) {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T =
-        Repositorys.run { kClass.get() }
+        Repository.run { kClass.get() }
 }
 
 inline fun <reified T : AbsRepository> repositoryOf(): RepositoryDelegate<T> {

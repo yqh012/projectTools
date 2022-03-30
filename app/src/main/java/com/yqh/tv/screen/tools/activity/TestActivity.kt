@@ -3,14 +3,10 @@ package com.yqh.tv.screen.tools.activity
 import android.graphics.SurfaceTexture
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.os.Bundle
 import android.view.Surface
-import android.view.SurfaceView
 import android.view.TextureView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.LogUtils
-import com.yqh.tv.screen.tools.R
 import com.yqh.tv.screen.tools.base.BaseActivity
 import com.yqh.tv.screen.tools.databinding.ActivityTestBinding
 
@@ -80,6 +76,14 @@ class TestActivity : BaseActivity<ActivityTestBinding>(ActivityTestBinding::infl
     }
 
     override fun initData() {
+    }
+
+    override fun showLoading(tag: String?) {
+//        TODO("Not yet implemented")
+    }
+
+    override fun dismissLoading(tag: String?) {
+//        TODO("Not yet implemented")
     }
 
     fun toast(msg: Any) {

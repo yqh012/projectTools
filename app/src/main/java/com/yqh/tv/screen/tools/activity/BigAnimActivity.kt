@@ -36,6 +36,14 @@ class BigAnimActivity :
 
     }
 
+    override fun showLoading(tag: String?) {
+//        TODO("Not yet implemented")
+    }
+
+    override fun dismissLoading(tag: String?) {
+//        TODO("Not yet implemented")
+    }
+
     fun toast(msg: Any) {
         Toast.makeText(this, msg.toString(), Toast.LENGTH_SHORT).show()
     }

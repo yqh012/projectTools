@@ -56,10 +56,12 @@ dependencies {
     api(Android.fragment.fragmentKtx)
     api(ThirdParty.mmkv.mmkv)
     api(Android.kotlinReflect)
-    api(ThirdParty.retrofit.retrofit)
-    api(ThirdParty.retrofit.retrofit_convert_gson)
+//    api(ThirdParty.retrofit.retrofit)
+//    api(ThirdParty.retrofit.retrofit_convert_gson)
+//    api(ThirdParty.okhttp.okhttp)
 
     api project(path: ':libannotation')
+    api project(path: ':network')
 
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.ext)

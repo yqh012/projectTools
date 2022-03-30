@@ -1,2 +1,3 @@
 com.yqh.tv.screen.tools.repository.StudentRepository
 com.yqh.tv.screen.tools.repository.UserRepository
+com.yqh.tv.screen.tools.repository.WxArticleRepository

@@ -5,6 +5,7 @@
       <module name="TvScreenTools.app" target="11" />
       <module name="TvScreenTools.base" target="11" />
       <module name="TvScreenTools.buildSrc" target="11" />
+      <module name="TvScreenTools.network" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

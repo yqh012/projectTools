@@ -12,20 +12,54 @@ import okhttp3.Request
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.SECONDS
+import javax.net.ssl.*
 
 object DownloadManager {
     private val downloadDirectory by lazy {
         File(AppUtil.application.filesDir, "download").also { it.mkdirs() }
     }
 
+    init {
+        initSSLConfig()
+    }
+
+    private fun initSSLConfig() {
+        val trustManagers = arrayOf<TrustManager>(object : X509TrustManager {
+            override fun checkClientTrusted(
+                chain: Array<out X509Certificate>?,
+                authType: String?
+            ) = Unit
+
+            override fun checkServerTrusted(
+                chain: Array<out X509Certificate>?,
+                authType: String?
+            ) = Unit
+
+            override fun getAcceptedIssuers(): Array<X509Certificate> {
+                return emptyArray()
+            }
+        })
+
+        try {
+            val ssl = SSLContext.getInstance("SSL")
+            ssl.init(null, trustManagers, SecureRandom())
+            HttpsURLConnection.setDefaultSSLSocketFactory(ssl.socketFactory)
+            HttpsURLConnection.setDefaultHostnameVerifier { hostname, session -> true }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     private val okhttpClient by lazy {
         OkHttpClient.Builder()
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(5, SECONDS)
-            .writeTimeout(5, SECONDS)
-            .callTimeout(5, SECONDS)
+//            .connectTimeout(5, TimeUnit.SECONDS)
+//            .readTimeout(5, SECONDS)
+//            .writeTimeout(5, SECONDS)
+//            .callTimeout(5, SECONDS)
             .build()
     }
 
@@ -36,7 +70,7 @@ object DownloadManager {
             val call = okhttpClient.newCall(request)
             val response = call.execute()
             if (response.isSuccessful) {
-                response.body()?.let { body ->
+                response.body?.let { body ->
                     val total = body.contentLength()
                     var emitValue = 0L
                     file.outputStream().use { output ->
@@ -46,7 +80,7 @@ object DownloadManager {
                                 if (progress - emitValue > 5) {
                                     emit(DownLoadState.Progress(progress.toInt()))
                                     emitValue = progress
-                                    LogUtils.e("progress","progress : $progress")
+                                    LogUtils.e("progress", "progress : $progress")
                                 }
                             }
                         }

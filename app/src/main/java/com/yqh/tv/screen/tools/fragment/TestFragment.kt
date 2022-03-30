@@ -11,4 +11,12 @@ class TestFragment : BaseFragment<ActivityMainBinding>(ActivityMainBinding::infl
     override fun initData() {
         //TODO("Not yet implemented")
     }
+
+    override fun showLoading(tag: String?) {
+//        TODO("Not yet implemented")
+    }
+
+    override fun dismissLoading(tag: String?) {
+//        TODO("Not yet implemented")
+    }
 }

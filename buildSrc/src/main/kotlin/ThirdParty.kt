@@ -30,4 +30,11 @@ object ThirdParty {
         const val retrofit_convert_gson = "com.squareup.retrofit2:converter-gson:$version"
     }
 
+    val okhttp = OkHttp
+
+    object OkHttp {
+        private const val version = "4.9.3"
+        const val okhttp = "com.squareup.okhttp3:okhttp:$version"
+    }
+
 }

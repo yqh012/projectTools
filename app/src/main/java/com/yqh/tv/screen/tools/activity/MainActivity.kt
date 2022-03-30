@@ -105,4 +105,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         Toast.makeText(this, "${userAdapter.currentList.size}", Toast.LENGTH_SHORT).show()
     }
 
+    override fun showLoading(tag: String?) {
+//        TODO("Not yet implemented")
+    }
+
+    override fun dismissLoading(tag: String?) {
+//        TODO("Not yet implemented")
+    }
+
 }
